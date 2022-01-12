@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Patient Management</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container text-center" align="center">
+    <div><h1>Patients List</h1></div>
+    <div class="container my-2">
+        <a th:href="@{/addPatientForm/{doctorId}(doctorId=${doctorId})}" class="btn btn-primary btn-sm mb-3">Add Patient</a>
+        <a th:href="@{/}" class="btn btn-primary btn-sm mb-3">Home</a>
+        <table border="1" class="table table-striped table-responsive-md">
+            <thead>
+            <tr>
+                <th>Patient Id</th>
+                <th>Name</th>
+                <th>Birthdate</th>
+                <th>Gender</th>
+                <th>Mobile</th>
+                <th>Nationality</th>
+                <th>ID Number</th>
+                <th>Doctor Id</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="patient: ${patientsList}">
+                <td th:text="${patient.patientId}"></td>
+                <td th:text="${patient.name}"></td>
+                <td th:text="${patient.birthdate}"></td>
+                <td th:text="${patient.gender}"></td>
+                <td th:text="${patient.mobileNumber}"></td>
+                <td th:text="${patient.nationality}"></td>
+                <td th:text="${patient.idNumber}"></td>
+                <td th:text="${doctorId}"></td>
+                <td>
+                    <a th:href="@{/updatePatientForm/{patientId}/{doctorId}(patientId=${patient.patientId},doctorId=${doctorId})}" class="btn btn-primary">Update</a>
+                    <a th:href="@{/deletePatient/{patientId}/{doctorId}(patientId=${patient.patientId},doctorId=${doctorId})}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
